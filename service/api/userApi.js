@@ -43,11 +43,12 @@ router.post('/login', (req, res) => {
     var sql_name = $sql.user.select_name;
     // var sql_password = $sql.user.select_password;
     var params = req.body;
-    if (keywords.name) {
-        sql_name += " where username ='"+ keywords.name +"'";
+	console.log(params);
+    if (params.name) {
+        sql_name += " where username ='"+ params.name +"'";
         console.log(sql_name);
     }    
-    conn.query(sql_name, keywords.name, function(err, result) {
+    conn.query(sql_name, params.name, function(err, result) {
         if (err) {
             console.log(err);
         }
@@ -57,7 +58,7 @@ router.post('/login', (req, res) => {
         } else {
             var resultArray = result[0];
             console.log(resultArray);
-            console.log(keywords);
+            console.log(params);
             if(resultArray.password === params.password) {
                 jsonWrite(res, result);
             } else {

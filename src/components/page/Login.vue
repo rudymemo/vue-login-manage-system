@@ -70,10 +70,6 @@
                                 self.errorInfo = true;
                                 self.errInfo = '该用户不存在';
                                 console.log('该用户不存在')
-                            } else if (response.data == 0) {
-                                console.log('密码错误')
-                                self.errorInfo = true;
-                                self.errInfo = '密码错误';
                             } else if (response.status == 200) {
                                 self.$router.push('/readme');
                                 sessionStorage.setItem('ms_username',self.ruleForm.name);

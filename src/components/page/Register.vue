@@ -89,15 +89,6 @@
 					callback();
 				}
 			};
-			var validateCard = (rule, value, callback) => {
-				if (value === '') {
-					callback(new Error('请输入身份证号'));
-				} else if (!Util.idCardReg.test(this.form.card)){
-					callback(new Error('请输入正确的身份证号'));
-				} else {
-					callback();
-				}
-			};
             return {
 				form: {
 					name: '',
@@ -128,9 +119,6 @@
                     ],
                     phone: [
                         { validator: validatePhone, trigger: 'blur' }
-                    ],
-                    card: [
-                        { validator: validateCard, trigger: 'blur' }
                     ],
                     birth: [
                         { required: true, message: '请输入出生日期',type: 'date', trigger: 'blur' }
