@@ -46,9 +46,6 @@
                     ],
                     password: [
                         { required: true, message: '请输入密码', trigger: 'blur' }
-                    ],
-                    validate: [
-                        { required: true, message: '请输入验证码', trigger: 'blur' }
                     ]
                 }
             }
@@ -63,18 +60,21 @@
                 const self = this;
                 self.$refs[formName].validate((valid) => {
                     if (valid) {                      
-                        self.$http.post('/api/user/login',JSON.stringify(self.ruleForm))
+                        self.$http.post('/api/user/login',self.ruleForm)
                         .then((response) => {
-                            console.log(response);
                             if (response.data == -1) {
                                 self.errorInfo = true;
                                 self.errInfo = '该用户不存在';
                                 console.log('该用户不存在')
+                            } else if (response.data == 0) {
+                                console.log('密码错误')
+                                self.errorInfo = true;
+                                self.errInfo = '密码错误';
                             } else if (response.status == 200) {
                                 self.$router.push('/readme');
                                 sessionStorage.setItem('ms_username',self.ruleForm.name);
                                 sessionStorage.setItem('ms_user',JSON.stringify(self.ruleForm));
-                                console.log(JSON.stringify(self.ruleForm));  
+                                sessionStorage.setItem('ms_userId',response.data[0].Id);
                             }                            
                         }).then((error) => {
                             console.log(error);
