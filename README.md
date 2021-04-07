@@ -53,7 +53,7 @@
 
 ## 安装步骤 ##
 
-	https://github.com/sakila1012/vue-login-manage-system.git     // 把项目下载到本地
+	git clone https://github.com/sakila1012/vue-login-manage-system.git     // 把项目下载到本地
 	cd manage-system    // 进入项目目录
 	npm install         // 安装项目依赖，等待安装完成之后
 
